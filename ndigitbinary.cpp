@@ -1,0 +1,86 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define db long double
+#define S second
+#define MOD 1000000007
+#define sz(v) int(v.size())
+#define all(v) v.begin(), v.end()
+
+//const int  N = 1e9 + 7;
+const int  P = 1e9;
+int n, d;
+int adj[5001][5001]; // adjacency matrix of graph
+const int INF = 1000000000; // weight INF means there is no edge
+const int mx = 100001;
+ll gcd (ll a, ll b) {return ( a ? gcd(b % a, a) : b );}
+ll power(ll a, ll n) {ll p = 1; while (n > 0) {if (n % 2) {p = p * a;} n >>= 1; a *= a;} return p;}
+ll power(ll a, ll n, ll mod) {ll p = 1; while (n > 0) {if (n % 2) {p = p * a; p %= mod;} n >>= 1; a *= a; a %= mod;} return p % mod;}
+std::vector<string> v;
+void nbitdigit(ll n, ll o, ll z, string &op)
+{
+	if (o + z == n)
+	{
+		v.push_back(op);
+		return;
+	}
+	if (o >= 0)
+	{
+		string op1 = op;
+		op1 += "1";
+		nbitdigit(n, o + 1, z, op1);
+	}
+	if (o > z && o != 0)
+	{
+		string op2 = op;
+		op2 += "0";
+		nbitdigit(n, o, z + 1, op2);
+	}
+
+
+}
+
+void solve() {
+	ll n;
+	cin >> n;
+	string s = "";
+	ll o = 0;
+	ll z = 0;
+	nbitdigit(n, o, z, s);
+	for (auto i : v)
+	{
+		cout << i << endl;
+	}
+
+
+
+
+}
+
+
+
+
+
+
+int main()
+{
+
+#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+#endif
+
+	// ll t ;
+	// cin >> t;
+
+
+	// while (t--)
+	// {
+
+
+	// 	solve();
+
+	// }
+	solve();
+	return 0;
+}
