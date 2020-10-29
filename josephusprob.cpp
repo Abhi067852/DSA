@@ -17,22 +17,31 @@ ll gcd (ll a, ll b) {return ( a ? gcd(b % a, a) : b );}
 ll power(ll a, ll n) {ll p = 1; while (n > 0) {if (n % 2) {p = p * a;} n >>= 1; a *= a;} return p;}
 ll power(ll a, ll n, ll mod) {ll p = 1; while (n > 0) {if (n % 2) {p = p * a; p %= mod;} n >>= 1; a *= a; a %= mod;} return p % mod;}
 
-ll josephus(ll n, ll k)
-{
-	if (n == 1)
+void josephus(std::vector<ll> &v, ll k, ll i, ll &ans)
+{	if (v.size() == 1)
 	{
-		return 1;
+		ans = v[0];
+		return ;
 	}
-	return (josephus(n - 1, k) + k) % n + 1;
+	i = (i + k) % v.size();
+	v.erase(v.begin() + i);
+	josephus(v, k, i, ans);
+
+
 }
 
 void solve() {
 	ll n, k;
-	cin >> n, k;
+	cin >> n >> k;
 	k--;
-	ll pos = 0;
-	pos = josephus(n, k);
-	cout << pos + 1 << endl;
+	std::vector<ll> v;
+	ll ans = -1;
+	for (int i = 1; i <= n; ++i)
+	{
+		v.push_back(i);
+	}
+	josephus(v, k, 0, ans);
+	cout << ans;
 }
 
 
